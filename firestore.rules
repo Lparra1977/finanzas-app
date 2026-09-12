@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Cada usuario solo puede leer/escribir sus propios datos.
+    match /users/{userId}/{document=**} {
+      allow read: if isOwner(userId);
+    }
+
+    // El documento principal de la app tiene además validación de forma y
+    // tamaño para que un cliente comprometido no pueda escribir datos
+    // arbitrarios o excesivamente grandes en nombre del usuario.
+    match /users/{userId}/appData/main {
+      allow write: if isOwner(userId) && isValidAppData();
+    }
+
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function isValidAppData() {
+      let data = request.resource.data;
+      return data.keys().hasOnly(['catalog', 'settings', 'periods', 'transactions', 'version'])
+        && data.catalog is list
+        && data.settings is map
+        && data.periods is map
+        && data.transactions is list
+        && data.version is int
+        // Límite generoso de tamaño para evitar documentos abusivos
+        // (Firestore ya limita a 1 MiB por documento; esto acota antes).
+        && request.resource.size() < 900000;
+    }
+  }
+}
