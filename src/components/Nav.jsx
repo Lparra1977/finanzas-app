@@ -109,7 +109,7 @@ export function NavMobile({ active, setActive }) {
         background: C.navy,
         display: "flex",
         justifyContent: "space-around",
-        padding: "8px 4px calc(8px + env(safe-area-inset-bottom))",
+        padding: "6px 4px calc(6px + env(safe-area-inset-bottom))",
         zIndex: 50,
         boxShadow: "0 -2px 10px rgba(0,0,0,0.15)",
       }}
@@ -125,6 +125,7 @@ export function NavMobile({ active, setActive }) {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              justifyContent: "center",
               gap: 2,
               background: "none",
               border: "none",
@@ -132,7 +133,9 @@ export function NavMobile({ active, setActive }) {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: 10,
               fontWeight: 600,
-              padding: "4px 8px",
+              padding: "6px 8px",
+              minWidth: 44,
+              minHeight: 44,
               cursor: "pointer",
             }}
           >
