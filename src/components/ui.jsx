@@ -234,7 +234,9 @@ export const inputStyle = {
   border: `1px solid ${C.line}`,
   borderRadius: 8,
   fontFamily: "'IBM Plex Sans', sans-serif",
-  fontSize: 14,
+  // 16px minimo: por debajo de eso, Safari en iOS hace zoom automatico
+  // al enfocar el campo.
+  fontSize: 16,
   color: C.ink,
   background: "#fff",
 };
@@ -244,7 +246,7 @@ export const miniInput = {
   border: `1px solid ${C.line}`,
   borderRadius: 6,
   fontFamily: "'IBM Plex Sans', sans-serif",
-  fontSize: 12.5,
+  fontSize: 16,
   color: C.ink,
   background: "#fff",
 };

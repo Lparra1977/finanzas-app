@@ -67,20 +67,20 @@ export default function CatalogoTab({ data, update }) {
                   </td>
                   <td style={{ padding: "8px 12px", fontWeight: 600, color: C.ink, whiteSpace: "nowrap" }}>{c.name}</td>
                   <td style={{ padding: "8px 12px" }}>
-                    <select value={c.category} onChange={(e) => patchItem(c.id, { category: e.target.value })} style={{ ...miniInput, width: 100 }}>
+                    <select value={c.category} onChange={(e) => patchItem(c.id, { category: e.target.value })} style={{ ...miniInput, width: 108 }}>
                       <option value="Gasto">Gasto</option>
                       <option value="Ahorro">Ahorro</option>
                     </select>
                   </td>
                   <td style={{ padding: "8px 12px" }}>
-                    <input type="number" step="0.01" value={c.q1} onChange={(e) => patchItem(c.id, { q1: parseFloat(e.target.value) || 0 })} style={{ ...miniInput, width: 75, fontFamily: "'IBM Plex Mono', monospace" }} />
+                    <input type="number" step="0.01" value={c.q1} onChange={(e) => patchItem(c.id, { q1: parseFloat(e.target.value) || 0 })} style={{ ...miniInput, width: 85, fontFamily: "'IBM Plex Mono', monospace" }} />
                   </td>
                   <td style={{ padding: "8px 12px" }}>
-                    <input type="number" step="0.01" value={c.q2} onChange={(e) => patchItem(c.id, { q2: parseFloat(e.target.value) || 0 })} style={{ ...miniInput, width: 75, fontFamily: "'IBM Plex Mono', monospace" }} />
+                    <input type="number" step="0.01" value={c.q2} onChange={(e) => patchItem(c.id, { q2: parseFloat(e.target.value) || 0 })} style={{ ...miniInput, width: 85, fontFamily: "'IBM Plex Mono', monospace" }} />
                   </td>
                   <td style={{ padding: "8px 12px", fontFamily: "'IBM Plex Mono', monospace", color: C.inkSoft, whiteSpace: "nowrap" }}>{fmt(c.q1 + c.q2)}</td>
                   <td style={{ padding: "8px 12px" }}>
-                    <select value={c.banco} onChange={(e) => patchItem(c.id, { banco: e.target.value })} style={{ ...miniInput, width: 130 }}>
+                    <select value={c.banco} onChange={(e) => patchItem(c.id, { banco: e.target.value })} style={{ ...miniInput, width: 140 }}>
                       {BANKS.map((b) => (
                         <option key={b} value={b}>
                           {b}
