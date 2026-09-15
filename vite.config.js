@@ -3,6 +3,18 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  // Vite 8 apunta por defecto a navegadores muy recientes ("baseline widely
+  // available"), lo que puede generar sintaxis que un Safari de iPhone algo
+  // viejo no puede ni parsear: el <script type="module"> falla en silencio
+  // y la app queda en blanco, sin ningún error visible para el usuario.
+  // Igualamos el target al que usaba Vite 5 (default "modules": Safari 14+),
+  // que es la base con la que esta misma app ya funcionaba en producción.
+  // No bajarlo más: Firebase ya usa BigInt (ES2020) internamente, así que
+  // apuntar a un target anterior a ES2020 no aporta nada y solo genera
+  // advertencias de build.
+  build: {
+    target: ["es2020", "safari14"],
+  },
   plugins: [
     react(),
     VitePWA({
